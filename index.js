@@ -1,0 +1,141 @@
+let a = {
+  xm: "曾传书",
+  xb: "1",
+  nl: "73岁",
+  daid: "6B11128BBA428882F77CEB76CA439594",
+  bh: "51060311020302823",
+  lxdh: "18111514776",
+  qzrqBegin: "2012-11-05",
+  qzfs: null,
+  qzrq: null,
+  xzz: "",
+  jzs: "1",
+  qzsbfz: null,
+  bfqkList: [],
+  jwkfxtHigh: null,
+  jwkfxtLow: null,
+  jwchxtHigh: null,
+  jwchxtLow: null,
+  jwthxhdbHigh: null,
+  jwthxhdbLow: null,
+  mqsfsyjtywzl: null,
+  mqsfsyydszl: null,
+  sg: null,
+  tz: null,
+  yw: null,
+  tzzs: null,
+  xy: "",
+  kfxt: null,
+  chxt: null,
+  thxhdb: null,
+  gysz: null,
+  zdgc: null,
+  ns: null,
+  dmdzdbdgc: null,
+  gmdzdbdgc: null,
+  swmbb: null,
+  swmbbqt: null,
+  zbdmbd: null,
+  zwsjbb: null,
+  tnbbz: null,
+  xdt: null,
+  qtjc: null,
+  ycqshfszlcs: null,
+  fjgljg: null,
+  jdYsId: "19B3AEC89BE54752815CE674F04DCF55",
+  jdRqBegin: "2012-11-05",
+  jgId: "510603110KAD",
+  dabh: "51060311020302823",
+  isPrimary: null,
+  jasj: null,
+  jasm: null,
+  jdjgId: "510603110KAD",
+  jdrq: "2012-11-05",
+  jdysName: "曾虹1",
+  jtzz: "东美村08组",
+  jzsqt: null,
+  ndb: null,
+  qhId: "510603110203",
+  qzdw: null,
+  ryId: "8C7898E960AF26639E15D4BA8B0C1A68",
+  ssy: null,
+  state: "NORMAL",
+  tnbId: "4B753FEF214A84A2EF4182A8D84F7601",
+  zjhm: "510602194808032915",
+  zrysId: "AB1D23FA29E14001B162268B15EC1CE4",
+  zrysName: "罗刚东",
+};
+let b = {
+  bfqkList: [
+    {
+      bzmc: "",
+      mqzlfs: "",
+      zdsj: "",
+      zlqk: "",
+    },
+  ],
+  bh: "",
+  chxt: 0,
+  daId: 0,
+  dmdzdbdgc: 0,
+  fjgljg: "",
+  gmdzdbdgc: 0,
+  gysz: 0,
+  jdjgId: "",
+  jdrq: "",
+  jdysId: "",
+  jwchxtHigh: 0,
+  jwchxtLow: 0,
+  jwkfxtHigh: 0,
+  jwkfxtLow: 0,
+  jwthxhdbHigh: 0,
+  jwthxhdbLow: 0,
+  jzs: "",
+  jzsqt: "",
+  kfxt: 0,
+  mqsfsyjtywzl: "",
+  mqsfsyydszl: "",
+  ndb: 0,
+  ns: 0,
+  qtjc: "",
+  qzdw: "",
+  qzfs: "",
+  qzrq: "",
+  qzsbfz: "",
+  sg: 0,
+  ssy: 0,
+  swmbb: "",
+  swmbbqt: "",
+  thxhdb: 0,
+  tnbbz: "",
+  tz: 0,
+  tzzs: 0,
+  xdt: "",
+  ycqshfszlcs: "",
+  yw: 0,
+  zbdmbd: "",
+  zdgc: 0,
+  zrysId: "",
+  zwsjbb: "",
+};
+
+let a1 = Object.keys(a);
+let b1 = Object.keys(b);
+// 字符串转成数组-链接两个数组，找出来
+function diff(arr1, arr2) {
+  return [...arr1, ...arr2].filter((v, i, arr) => {
+    return arr.indexOf(v) === arr.lastIndexOf(v);
+  });
+}
+const mapArr1 = [...new Map(a).keys()];
+const mapArrb = [...new Map(b).keys()];
+
+const setTrue = (arr, isTrue) => {
+  arr.forEach((item) => {
+    map.set(item, isTrue);
+  });
+  return arr;
+};
+
+let result = diff(a1, b1);
+console.log(result);

@@ -1,0 +1,55 @@
+<!--
+ * @Description  : 用canvas 画个小球(让它自由落地,然后反弹到开始的位置,整个过程不停重复)
+ * @Author       : Summer
+ * @Date         : 2021-07-07 14:39:47
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         canvas { border: 1px solid black; }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="460"></canvas>
+    <script type="text/javascript">
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var height = 0
+        // 初始速度 v= v0t 匀速
+        var initSpeed = 0
+        //  加速度
+        var speed = 1
+         
+        function draw(){
+            ctx.clearRect(0,0,300,460); 
+            var circle = new Path2D();
+            ctx.fillStyle = "orange";
+            circle.arc(125, 35, 25, 0, 2 * Math.PI);
+            initSpeed +=speed
+            height += initSpeed
+            ctx.save();
+            ctx.translate(0,height);
+            ctx.fill(circle);
+            ctx.restore();
+
+            if( height + initSpeed >=400 ) {
+                height = 400
+            }
+            if(height <= 0 || height >= 400 ) {
+                initSpeed = -initSpeed
+            }else{
+                initSpeed = initSpeed
+                
+            }
+            requestAnimationFrame(draw);
+        }
+
+        draw()
+    </script>
+</body>
+</html>
