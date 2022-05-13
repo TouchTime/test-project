@@ -1,0 +1,18 @@
+/* 
+将div与Canvas画布均position:absolute，否则无法重叠。
+将div的z-index值设置大点，保证其在Canvas画面之上。
+ */
+ .bg{
+     position:relative
+ }
+ .box,.mask{
+     position: absolute;
+     left: 50px;
+     top: 50px;
+     border:1px solid #000;
+ }
+
+.mask{
+    z-index:9;
+    border:1px solid red;
+}

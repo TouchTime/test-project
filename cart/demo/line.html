@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #demo {
+            position: relative;
+            width: 2px;
+            height: 50px;
+            margin-left: 40px;
+            background: #E42B2B;
+            transform: rotate( 180deg);
+            margin-top: 25px;
+        }
+
+        #demo:after {
+            content: ' ';
+            height: 0;
+            position: absolute;
+            width: 0;
+            border: 10px solid transparent;
+            border-top-color: #E42B2B;
+            top: 100%;
+            left: 50%;
+            margin-left: -10px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div id="demo"></div>
+</body>
+</html>

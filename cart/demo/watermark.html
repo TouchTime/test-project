@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content {
+            width:100vw;
+            height:100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <script>
+   
+    /**
+     * @param {*} dom
+     * @param {String} txt
+     */
+     const Watermark = function (dom, txt,str) {
+        if (!dom) return false
+        let length = txt.length * 20 // 根据内容生成画布大小，20代表比例
+        let canvas = document.createElement('canvas')
+        canvas.width = canvas.height = length
+        canvas.style.display = 'none'
+        document.body.appendChild(canvas)
+        let context = canvas.getContext('2d')
+        context.font = '12px "PingFangSC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif'
+        context.fillStyle = 'red'
+        context.rotate(-15 * Math.PI / 180) // 画布里面文字的旋转角度
+        context.fillText(str, length / 2, length) // 文字的位置
+        dom.style.backgroundImage = `url(${canvas.toDataURL('image/png')})`
+        }
+        Watermark(document.getElementById('content'),'1212121','水印')
+    </script>
+</body>
+</html>

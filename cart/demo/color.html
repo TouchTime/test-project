@@ -1,0 +1,45 @@
+<!--
+ * @Description  : 颜色提取器   
+ * @Author       : huyanyan
+ * @Date         : 2021-07-28 11:23:03
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颜色提取器</title>
+</head>
+<body>
+    <canvas id="canvas" width="1000" height="1000" ></canvas>
+    
+    <script>
+        var canvas = document.getElementById("canvas")
+        var ctx = canvas.getContext("2d");
+        var img = new Image();
+        var width  = 1000
+        var height = 1000
+        var left = 0
+        var top = 0
+        var myImageData = ''
+        img.onload = function(){
+            ctx.drawImage(img,0,0);
+           
+          
+        };
+       
+        img.src = 'https://static.zhihu.com/liukanshan/images/comics/bg-89c9bdc3.jpg';
+        canvas.addEventListener('click',(event)=> {
+            console.log(event)
+            left = event.clientX
+            top = event.clientY
+            myImageData =  ctx.getImageData(left, top, width, height);
+            console.log(myImageData)
+            
+        })
+    
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+.cart{
+    position: relative;
+    cursor: pointer;
+}
+.cart-list{
+    padding: 10px;
+    border: 1px solid #eee;
+    margin: 10px;
+    position: relative;
+}
+.cart-name{
+    margin-left: 20px;
+}
+.cart-price{
+    float:right;
+    margin-right:20px;
+}
+.cart-count{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    background: #1e80ff;
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 6px;
+    transform: translate(0, -50%);
+}
+.box{
+    border: 1px solid #7ec1ff;
+    background-color: rgb(24 144 255 / 20%);
+    position: absolute;
+}

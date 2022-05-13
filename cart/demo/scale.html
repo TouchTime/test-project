@@ -1,0 +1,153 @@
+<!--
+ * @Description  : 拖拽缩放   
+ * @Author       : huyanyan
+ * @Date         : 2021-07-28 11:23:03
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖拽缩放</title>
+    <style>
+         html,body,#app {
+            width:100%;
+            height:100%;
+            border:0;
+            margin:0;
+            padding:0;
+            }
+            #canvas{
+            width:100%;
+            height:100%;
+            }
+    </style>
+</head>
+<body>
+   <div id="app">
+    <canvas id="canvas" ></canvas>
+   </div>
+    
+    <script type="text/javascript">
+        window.onload = () =>{
+            let canvas = document.getElementById("canvas")
+            let ctx = canvas.getContext("2d");
+            let img = new Image();
+            let imgX = 0,imgY = 0,dx = 0,dy=0,imgScale = 1
+            let hasClicked = false
+            let style = ''
+           
+            initImg()
+           
+             /**
+             * 初始化图片
+             */
+            function initImg() {
+                console.log(canvas)
+                canvas.width = canvas.getBoundingClientRect().width
+                canvas.height = canvas.getBoundingClientRect().height
+                img.onload = function(){
+                    imgX = (canvas.width - img.width) / 2;
+                    imgY = (canvas.height - img.height) / 2
+                    draw()
+                };
+                img.src = 'https://static.zhihu.com/liukanshan/images/comics/bg-89c9bdc3.jpg';
+            }
+        
+            /**
+             * 开始画图
+             * drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+             */
+            function draw(){
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img,0,0, img.width,img.height,imgX,imgY,img.width * imgScale,img.height * imgScale);
+                addDrageEvent()
+            }
+            
+
+            /**
+             * 添加事件
+             */
+            function addDrageEvent() {
+             
+                // 鼠标点击事件
+                canvas.onmousedown  = function(event) {
+                    hasClicked = true
+                    canvas.style.cursor = 'move';
+                    style = windowToCanvas( event.clientX, event.clientY)
+                };
+                
+                // 鼠标滑动事件
+                canvas.onmousemove =  function(event) {
+                    if(!hasClicked) {
+                        return 
+                    }
+                    canvas.style.cursor = 'move';
+                    let style1= windowToCanvas( event.clientX, event.clientY)
+                    console.log(style,style1)
+                   let x = style1.x - style.x
+                   let y = style1.y - style.y
+                   style = style1
+                    imgX +=  x
+                    imgY +=  y
+                    draw()
+
+                }
+
+                // 鼠标放下事件
+                canvas.onmouseup = function() {
+                    hasClicked = false
+                    canvas.style.cursor = 'default';
+                }
+
+                // 鼠标滚轮事件
+                canvas.onmousewheel = function (event) {
+                    var pos = windowToCanvas(event.clientX, event.clientY);
+                    var n = 1.1;
+                    var n2 = (1/1.1).toFixed(2);
+                    event.wheelDelta = event.wheelDelta ? event.wheelDelta : (event.deltalY * (-40));
+                    if (event.wheelDelta > 0) {
+                    imgScale *= n;
+                    imgX = imgX * n - pos.x * (n-1);
+                    imgY = imgY * n - pos.y * (n-1);
+                    } else {
+                    imgScale *= n2;
+                    imgX = imgX *n2+ pos.x *(1-n2);
+                    imgY = imgY *n2 + pos.y *(1-n2);
+                    }
+                    draw();
+                }
+
+            }
+
+
+            /**
+             * 处理图片的大小
+             */
+             function windowToCanvas(x,y) {
+                let box = canvas.getBoundingClientRect(); //这个方法返回一个矩形对象，包含四个属性：left、top、right和bottom。分别表示元素各边与页面上边和左边的距离
+                return {
+                    x: x - box.left - (box.width - canvas.width) / 2,
+                    y: y - box.top - (box.height - canvas.height) / 2
+                };
+            }
+
+            function getSize (event) {
+                let style= windowToCanvas( event.clientX, event.clientY)
+                imgX = style.x
+                imgY = style.y
+            }
+
+         
+           
+        }
+
+         
+       
+       
+      
+    </script>
+    
+</body>
+</html>

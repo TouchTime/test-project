@@ -1,0 +1,12 @@
+.img-list{   
+    display: inline-block;
+    width: 50%;
+}
+.show-list{
+    margin: 10px;
+    border: 1px solid yellowgreen;
+}
+.watermark{
+    width: 100%;
+    height: 100%;
+}
